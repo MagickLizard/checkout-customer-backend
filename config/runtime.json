@@ -1,0 +1,17 @@
+{
+  "express": {
+    "port": 3080,
+    "hostname": "https://localhost",
+    "basePath": "/"
+  },
+  "mysql": {
+    "hostname": "192.168.56.101",
+    "username": "miles",
+    "password": "miles",
+    "database": "miles",
+    "port": 3306
+  },
+  "console": {
+    "disabled": false
+  }
+}

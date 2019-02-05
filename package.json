@@ -1,0 +1,21 @@
+{
+  "name": "seekproject",
+  "version": "1.0.0",
+  "description": "This is my backend solution for the seek prices",
+  "main": "checkout.js",
+  "author": "Lizzie King",
+  "license": "ISC",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "lizzieking521@gmail.com"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "helmet": "^3.9.0",
+    "lodash": "^4.17.5",
+    "request": "^2.83.0"
+  }
+}

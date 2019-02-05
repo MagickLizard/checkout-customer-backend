@@ -1,0 +1,20 @@
+[
+  {
+      "Customer": "default",
+      "Items": [
+          "classic",
+          "classic",
+          "premium"
+      ],
+      "Total": "$9999.99"
+  },
+  {
+      "Customer": "SECOND",
+      "Items": [
+          "classic",
+          "classic",
+          "premium"
+      ],
+      "Total": "$9999.99"
+  }
+]
