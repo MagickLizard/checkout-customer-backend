@@ -1,7 +1,7 @@
 {
-  "name": "seekproject",
+  "name": "customer_checkout",
   "version": "1.0.0",
-  "description": "This is my backend solution for the seek prices",
+  "description": "This is part of backend solution for a customer checkout",
   "main": "checkout.js",
   "author": "Lizzie King",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "express": "^4.13.4",
     "helmet": "^3.9.0",
     "lodash": "^4.17.5",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "mysql2": "^1.5.2"
   }
 }

@@ -1,0 +1,24 @@
+  {
+    "Customer": "default",
+    "Items": [
+      "classic",
+      "classic",
+      "premium"
+    ],
+    "Total": "$99.99"
+  }
+  {
+    "Product": "default",
+    "Name": [
+      "classic",
+      "premium",
+      "premium"
+    ],
+    "Description": [
+      "Offer",
+
+    ],
+    "Retail_Price": [
+      
+    ]
+  }
