@@ -6,9 +6,9 @@
   },
   "mysql": {
     "hostname": "192.168.56.101",
-    "username": "miles",
-    "password": "miles",
-    "database": "miles",
+    "username": "user",
+    "password": "pass",
+    "database": "customerdb",
     "port": 3306
   },
   "console": {

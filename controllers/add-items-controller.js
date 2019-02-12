@@ -6,7 +6,7 @@ class AddItemsController {
   }
 
   handle(req, res) {
-    if (req) { //fix this later use request lib and use promify 
+    if (req) { //TODO: fix this later use request lib and use promify 
       let checkout = this.checkoutAddingItemsModel.add(req)
       return checkout;
     }

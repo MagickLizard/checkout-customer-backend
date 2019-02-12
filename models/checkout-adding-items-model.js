@@ -8,7 +8,7 @@ class CheckoutAddingItemsModel {
   add(req) {
     if (req.body) {
    //TODO: create a safety layer in lib instead of calling this from model
-   return checkoutService = this.checkoutService.wrapper(req.body)
+   return this.checkoutService.wrapper(req.body)
     }
     else {
       console.log('ERROR in Model >>>')

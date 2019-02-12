@@ -6,7 +6,8 @@
   "author": "Lizzie King",
   "license": "ISC",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node routes/backend.js"
   },
   "repository": {
     "type": "git",
