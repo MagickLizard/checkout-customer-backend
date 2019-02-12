@@ -5,10 +5,10 @@
     "basePath": "/"
   },
   "mysql": {
-    "hostname": "192.168.56.101",
-    "username": "miles",
-    "password": "miles",
-    "database": "miles",
+    "hostname": "192.168.56.100",
+    "username": "user",
+    "password": "pass",
+    "database": "test",
     "port": 3306
   },
   "console": {
