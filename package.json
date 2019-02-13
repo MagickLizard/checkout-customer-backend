@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "test": "test",
-    "start": "node routes/backend.js"
+    "start": "node backend/routes/backend.js"
   },
   "repository": {
     "type": "git",

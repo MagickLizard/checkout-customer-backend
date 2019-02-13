@@ -1,3 +1,5 @@
+This project is a WIP.
+
 ### To start ###
 
 `npm i`
@@ -25,4 +27,3 @@ with this request body:
         "Total": "$9999.99"
     }
 ]`
-This project is a WIP.
