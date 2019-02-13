@@ -8,14 +8,16 @@ class AddItemsController {
   handle(req, res) {
     if (req) { // TODO: fix this later use request lib and use promify 
       let checkout = this.checkoutAddingItemsModel.add(req)
+      console.log('Did you get a discount? >', checkout);
+      
       return checkout;
     }
     else {
       return data = {
         id: 'Something wrong',
-        Customer: '',
-        Items: '',
-        'Total': '',
+        customer: '',
+        items: '',
+        'total': '',
       };
     }
   }

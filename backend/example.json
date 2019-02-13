@@ -1,9 +1,8 @@
   {
-    "Customer": "default",
-    "Items": [
-      "classic",
+    "customer": "standard",
+    "items": [
       "classic",
       "premium"
     ],
-    "Total": "$99.99"
+    "total": "$99.99"
   }

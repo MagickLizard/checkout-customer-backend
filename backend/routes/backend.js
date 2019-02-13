@@ -27,3 +27,12 @@ app.post('/api/customer', helmet.noCache(), (req, res) => {
   
   addItemsController.handle(req, res);
 });
+app.post('/api/search', helmet.noCache(), (req, res) => { 
+  req.get('Referrer')
+  res.send(req.body)
+
+  const addItemsController = new AddItemsController();
+  
+  addItemsController.handle(req, res);
+});
+
