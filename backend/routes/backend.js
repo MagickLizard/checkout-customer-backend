@@ -21,23 +21,18 @@ app.get('/api/checkout', helmet.noCache(), (req, res) => {
   req.get('Referrer')
   res.send(req.body)
   const getCostController = new AddItemsController();
-  
   getCostController.handle(req, res);
 });
 app.post('/api/customer', helmet.noCache(), (req, res) => { 
   req.get('Referrer')
   res.send(req.body)
-
   const addItemsController = new AddItemsController();
-  
   addItemsController.handle(req, res);
 });
 app.post('/api/search', helmet.noCache(), (req, res) => { 
   req.get('Referrer')
   res.send(req.body)
-
   const addItemsController = new AddItemsController();
-  
   addItemsController.handle(req, res);
 });
 

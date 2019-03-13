@@ -22,11 +22,11 @@ yarn-error.log*
 package-lock.json
 
 
-# Logs
+# Logs TODO
 logs
 *.Logs
-# Compiled directory and file
 build/
 bundle.js
-# Dependency directories
+
 node_modules/
+package-lock.json
