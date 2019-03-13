@@ -20,3 +20,13 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
+
+
+# Logs
+logs
+*.Logs
+# Compiled directory and file
+build/
+bundle.js
+# Dependency directories
+node_modules/

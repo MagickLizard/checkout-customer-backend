@@ -1,14 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 
-ReactDOM.render(
+// registerServiceWorker(); TODO
 
-	<Router>
-	  <App>
-      <title> hiiiiii </title>
-	  </App>
-	</Router>
-
-,document.getElementById('root'));
-
-registerServiceWorker();
+// const App = require('./client/src/index.jsx');
+const App = require('./client/dist/index.html'); //unsure how to do this without specify path directly need to do research
+module.exports = new App();
