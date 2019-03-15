@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "test": "test",
-    "start": "node backend/routes/backend.js"
+    "start": "node backend/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,9 +15,11 @@
   },
   "dependencies": {
     "express": "^4.13.4",
+    "fs": "0.0.1-security",
     "helmet": "^3.9.0",
     "lodash": "^4.17.5",
-    "request": "^2.83.0",
-    "mysql2": "^1.5.2"
+    "mysql2": "^1.5.2",
+    "path": "^0.12.7",
+    "request": "^2.83.0"
   }
 }
