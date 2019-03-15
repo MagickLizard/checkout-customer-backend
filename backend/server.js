@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -10,7 +10,8 @@ app.use(express.json());
 require('./routes')(app);
 
 app.get('/', (req, res) => {
-  res.send('PORT 5000');
+  
+  res.send('PORT 8080');
 });
 
 app.listen(port, (err) => {
