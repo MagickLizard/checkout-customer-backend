@@ -1,0 +1,22 @@
+
+.rc-menu {
+  color: rgb(240, 240, 240);
+  // animation-name: rainbow;
+
+  animation-duration: 10s;
+  animation-iteration-count: 5;
+  background-color: rgb(199, 56, 255);
+}
+.rc-menu-submenu-active {
+  background-color: rgb(252, 162, 225);
+}
+
+// @keyframes rainbow {
+//   10%   {background-color: rgb(255, 118, 255);}
+//   25%  {background-color: #cc75ff;}
+//   50%  {background-color: rgb(222, 67, 253);}
+//   100% {background-color: rgb(233, 44, 223);}
+// }
+
+
+

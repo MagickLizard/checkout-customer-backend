@@ -2,32 +2,32 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+
+h1 {
+  background: linear-gradient(to right, rgb(241, 22, 187), rgb(255, 123, 0), rgb(255, 255, 254), rgb(174, 0, 255), blue, rgb(255, 158, 215));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 5em;
+  line-height: 1.5em;
+  text-shadow: 8px 0 0px rgb(188, 53, 250);
+  animation-name: rainbow;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h2 {
+  background-color:white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5rem;
+  line-height: 3em;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html {
+  background: linear-gradient(to left, rgb(255, 174, 0), rgb(238, 81, 212), rgb(247, 62, 231));
 }
+/* @keyframes rainbow {
+  10%   {color: rgb(171, 118, 255);}
+  25%  {color: #cc75ff;}
+  50%  {color: rgb(253, 241, 67);}
+  100% {color: rgb(193, 162, 252);}
+} */

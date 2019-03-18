@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "node-sass": "^4.11.0",
+    "rc-menu": "^7.4.21",
     "react": "^16.8.4",
+    "react-accessible-accordion": "^2.4.5",
     "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "react-router-dom": "^4.4.0",
+    "react-scripts": "2.1.8",
+    "react-tabs": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
