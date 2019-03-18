@@ -25,9 +25,3 @@ h2 {
 html {
   background: linear-gradient(to left, rgb(255, 174, 0), rgb(238, 81, 212), rgb(247, 62, 231));
 }
-/* @keyframes rainbow {
-  10%   {color: rgb(171, 118, 255);}
-  25%  {color: #cc75ff;}
-  50%  {color: rgb(253, 241, 67);}
-  100% {color: rgb(193, 162, 252);}
-} */
