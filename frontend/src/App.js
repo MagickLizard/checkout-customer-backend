@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/header/header.js';
 import './App.css';
+import "bulma/sass/utilities/_all.sass"
+import "bulma/sass/grid/columns.sass"
 
 class App extends Component {
   render() {
