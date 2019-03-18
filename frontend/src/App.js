@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App"> 
         {/* <Header/> */}
-        <h1> lizard magik </h1>
+        <h1> Magick Lizard </h1>
         <img name="dragon" src="dragon.png" alt="dragon"/>
         <h2> A magical experience like no other. </h2>
       </div>
