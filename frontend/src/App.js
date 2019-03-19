@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/header/header.js';
+import Form from './components/form/form.jsx';
 import './App.css';
 
 class App extends Component {
@@ -9,15 +10,15 @@ class App extends Component {
         <Header />
         <section class="section">
           <div class="container">
-            <h1 class="title">
-              LizardMagik
-      </h1>
-            <p>
-              Where everything is <strong>magical!</strong>
-            </p>
-            <img class="dragon" src="dragon.png" alt="dragon" />
-            <h2> Coming soon...(*suspense builds*) </h2>
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child">
+                <p class="title">LizardMagik</p>
+                <img class="dragon" src="dragon.png" alt="dragon" />
+                <p class="subtitle"> A place full of magic!</p>
+              </article>
+            </div>
           </div>
+          <Form />
         </section>
       </div>
     );
