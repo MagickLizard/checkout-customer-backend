@@ -4,12 +4,12 @@
 
 
 h1 {
-  background: linear-gradient(to right, rgb(241, 22, 187), rgb(255, 123, 0), rgb(255, 255, 254), rgb(174, 0, 255), blue, rgb(255, 158, 215));
+  background: linear-gradient(to right, rgb(241, 22, 187), rgb(255, 123, 0), rgb(245, 168, 81), rgb(255, 158, 215));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 5em;
   line-height: 1.5em;
-  text-shadow: 8px 0 0px rgb(188, 53, 250);
+  text-shadow: 2px 0 0px rgb(188, 53, 250);
   animation-name: rainbow;
 }
 
