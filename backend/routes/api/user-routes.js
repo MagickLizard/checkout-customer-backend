@@ -6,9 +6,10 @@ const helmet = require('helmet');
 
 module.exports = (app) => {
 
-	let zipcode = 'test';
+	// let zipcode = 'test';
 
 	app.post('/user', (req, res) => {
+console.log('POST>>>')
 
     // zipcode = req.body.zipcode;
     res.send({ req, zipcode });
@@ -18,9 +19,10 @@ module.exports = (app) => {
 		// 	res.redirect('/user');
 		// }
   }),
-  app.post('/api/customer', helmet.noCache(), (req, res) => { 
+  app.post('/api/customer', (req, res) => { 
   req.get('Referrer')
-  console.log('req.body>>>', req.body)
+  // console.log('req.body1>>>', req)
+  console.log('req.body>>>', req.route)
   
   res.send(req.body)
   const addItemsController = new AddItemsController();

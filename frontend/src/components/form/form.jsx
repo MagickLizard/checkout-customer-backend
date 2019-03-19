@@ -1,52 +1,62 @@
 import React, { Component } from 'react';
 import './form.scss';
 
+
 class Form extends Component {
-  onClick(info) {
-    // console.log('click ', info);
+
+  constructor() {
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  getMenu() {
-    return (
-      <div class="tile is-parent is-vertical">
-        <article class="tile is-child notification is-info">
-          <p class="title">Backend request</p>
-          <p class="subtitle">Sending a request to the backend</p>
-          <div class="content">
-            <section class="section">
-              <div class="container">
-                <div class="columns">
-                  <div class="column">
-                    <div class="field">
-                      <label class="label">Purchase information please</label>
-                      <div class="control">
-                        <textarea class="textarea" placeholder="json request add here"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column">
-                  <div class="content">
-                      <div class="control">
-                        <button class="button is-large is-link submit-center">Submit</button>
-                      </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </article>
-      </div>
-
-      
-            );
-          }
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('event>>>', event.target);
+    const data = new FormData(event.target);
+    const url = 'http://localhost:8080/api/customer';
+    var formData = new FormData();
+    console.log('formData>>>', formData)
+    
+    fetch(url, {
+      "method": "POST",
+      // "headers": {
+        // "Cache-Control": "no-cache",
+      //     // "accept": "application/json; charset=utf-8",
+      //     // "Content-Type": "application/json",
+      //     "Access-Control-Allow-Origin": null
+      // }
+      "body":[
+        {
+            "customer": "default",
+            "items": [
+                "classic",
+                "classic",
+                "premium"
+            ],
+            "total": "9999.99"
+        },
+        {
+            "customer": "SECOND",
+            "items": [
+                "classic",
+                "classic",
+                "premium"
+            ],
+            "total": "9999.99"
+        }
+    ]
+  })
+  }
         
   render() {
-    return (<div>
-              <div style={{}}>{this.getMenu()}</div>
-            </div>);
-          }
-        }
-        
+    return (
+      // this.getMenu());
+    <form onSubmit={this.handleSubmit}> 
+      <input htmlFor="username" id="username" class="input is-primary" type="text" placeholder="Username"></input>
+      <input htmlFor="email" id="email" class="input is-info" type="text" placeholder="email"></input>
+      <button type="submit" class="button is-large is-link submit-center">Submit</button> 
+     </form> 
+    )
+  }
+        }   
         export default Form

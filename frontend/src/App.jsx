@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './components/header/header.js';
+import Header from './components/header/header.jsx';
 import Form from './components/form/form.jsx';
 import './App.css';
 
@@ -24,5 +24,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
