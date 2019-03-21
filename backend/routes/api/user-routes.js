@@ -3,12 +3,23 @@ const AddItemsController = require('../../controllers/add-items-controller.js');
 // NOTE: Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
 const helmet = require('helmet'); 
 
+var cors = require('cors')
 
 module.exports = (app) => {
-
-	let zipcode = 'test';
+  const whitelist = ['http://http://localhost:3000']
+  let corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+	// let zipcode = 'test';
 
 	app.post('/user', (req, res) => {
+console.log('POST>>>')
 
     // zipcode = req.body.zipcode;
     res.send({ req, zipcode });
@@ -18,7 +29,7 @@ module.exports = (app) => {
 		// 	res.redirect('/user');
 		// }
   }),
-  app.post('/api/customer', helmet.noCache(), (req, res) => { 
+  app.post('/api/customer',cors(corsOptions), (req, res) => { 
   req.get('Referrer')
   console.log('req.body>>>', req.body)
   
