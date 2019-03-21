@@ -47,15 +47,26 @@ class Form extends Component {
     ]
   })
   }
-        
+                    // this.getMenu());
   render() {
     return (
-      // this.getMenu());
+    <div class="container">
+      <article class="message">
+  <div class="message-header">
+    <p>Backend Example </p>
+  </div>
+  <div class="message-body">
+    <p class="subtitle">This is to show sending a post to the backend I have written and getting a response.</p>
     <form onSubmit={this.handleSubmit}> 
+    <div class="column-is-half">
       <input htmlFor="username" id="username" class="input is-primary" type="text" placeholder="Username"></input>
       <input htmlFor="email" id="email" class="input is-info" type="text" placeholder="email"></input>
       <button type="submit" class="button is-large is-link submit-center">Submit</button> 
+      </div>
      </form> 
+     </div>
+</article>
+</div>
     )
   }
         }   
