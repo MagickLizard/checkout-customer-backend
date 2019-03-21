@@ -23,9 +23,11 @@ class App extends Component {
             {/* </div> */}
 
           </div>
-          <Form />
+
         </section>
+        <Form />
       </div>
+
     );
   }
 }

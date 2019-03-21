@@ -1,31 +1,48 @@
 import React, { Component } from 'react';
 import './form.scss';
-
+import Input from '../shared/input.jsx';
+import Button from "../shared/button.jsx";
 
 class Form extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      newUser: {
+        fullName: ""
+      },
+    };
+    this.handleFullName = this.handleFullName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleFullName(e) {
+    let value = e.target.value;
+    this.setState(
+      prevState => ({
+        newUser: {
+          ...prevState.newUser,
+          name: value
+        }
+      }),
+      () => console.log('this.state.newUser', this.state.newUser)
+    );
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('event>>>', event.target);
-    const data = new FormData(event.target);
-    const url = 'http://localhost:8080/api/customer';
-    var formData = new FormData();
-    console.log('formData>>>', formData)
-    
-    fetch(url, {
-      "method": "POST",
-      // "headers": {
-        // "Cache-Control": "no-cache",
-      //     // "accept": "application/json; charset=utf-8",
-      //     // "Content-Type": "application/json",
-      //     "Access-Control-Allow-Origin": null
-      // }
-      "body":[
+    const userData = this.state.newUser;
+    // const proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+     let url = 'http://localhost:8080/api/customer';
+    console.log('userData>>>', userData)
+
+    fetch( url, {
+      method: "POST",
+      headers: {
+        "Cache-Control": "no-cache",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }, "body": [
         {
             "customer": "default",
             "items": [
@@ -44,30 +61,31 @@ class Form extends Component {
             ],
             "total": "9999.99"
         }
-    ]
-  })
+    ],
+    }).then(response => {
+      response.json().then(data => {
+        console.log("Successful" + data);
+      });
+    });
   }
-                    // this.getMenu());
   render() {
     return (
-    <div class="container">
-      <article class="message">
-  <div class="message-header">
-    <p>Backend Example </p>
-  </div>
-  <div class="message-body">
-    <p class="subtitle">This is to show sending a post to the backend I have written and getting a response.</p>
-    <form onSubmit={this.handleSubmit}> 
-    <div class="column-is-half">
-      <input htmlFor="username" id="username" class="input is-primary" type="text" placeholder="Username"></input>
-      <input htmlFor="email" id="email" class="input is-info" type="text" placeholder="email"></input>
-      <button type="submit" class="button is-large is-link submit-center">Submit</button> 
-      </div>
-     </form> 
-     </div>
-</article>
-</div>
+      <form onSubmit={this.handleSubmit}>
+        <Input
+          inputtype={"text"}
+          title={"Full Name"}
+          name={"name"}
+          value={this.state.newUser.name}
+          placeholder={"Enter your name"}
+          handlechange={this.handleInput}
+        />{" "}
+        <Button
+          action={this.handleFormSubmit}
+          type={"primary"}
+          title={"Submit"}
+        />{" "}
+      </form>
     )
   }
-        }   
-        export default Form
+}
+export default Form;
