@@ -6,8 +6,10 @@
   "author": "Lizzie King",
   "license": "ISC",
   "scripts": {
-    "test": "test",
-    "start": "node backend/server.js"
+    "test": "mocha ./test/test.js --reporter spec",
+    "start": "node backend/server.js",
+    "lint": "eslint .",
+    "test-coverage": "istanbul cover ./node_modules/.bin/_mocha -- test/test.js test/test-ratelimit.js --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,9 @@
     "express": "^4.13.4",
     "fs": "0.0.1-security",
     "helmet": "^3.9.0",
+    "i": "^0.3.6",
     "lodash": "^4.17.5",
+    "mocha": "^6.0.2",
     "mysql2": "^1.5.2",
     "path": "^0.12.7",
     "request": "^2.83.0"
