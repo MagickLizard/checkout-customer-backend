@@ -16,7 +16,6 @@ module.exports = (app) => {
     }
   }
 }
-	// let zipcode = 'test';
 
 	app.post('/user', (req, res) => {
 console.log('POST>>>')
@@ -29,7 +28,7 @@ console.log('POST>>>')
 		// 	res.redirect('/user');
 		// }
   }),
-  app.post('/api/customer',cors(corsOptions), (req, res) => { 
+  app.post('/api/customer', (req, res) => { 
   req.get('Referrer')
   console.log('req.body>>>', req.body)
   

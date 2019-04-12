@@ -7,7 +7,7 @@ class AddItemsController {
 
   handle(req, res) {
     if (req) { // TODO: fix this later use request lib and use promify 
-      console.log('req controller>>>', req)
+      // console.log('req controller>>>', req)
       let checkout = this.checkoutAddingItemsModel.add(req)
       console.log('Did you get a discount? >', checkout);
       
