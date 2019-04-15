@@ -1,11 +1,14 @@
 const IterateRequestHelper = require('../lib/iterate-request-helper.js');
+const StatsCollector = require('./statsCollector.js');
+
 
 class CheckoutService {
   constructor() {
   }
   wrapper(requestBody) {
-    const result = IterateRequestHelper.wrapper(requestBody)
-    return result
+    console.log('StatsCollector>>>', StatsCollector)
+    
+    return IterateRequestHelper.wrapper(requestBody)
   }
 }
 module.exports = new CheckoutService();
