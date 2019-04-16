@@ -3,34 +3,51 @@
 
 class StatsCollector {
   constructor() {
-    let responseTimeMs = [1000, 1200, 40000, 30000, 9000];
-    let number = 500000;
-    let badResultsRemoved = this.pushValue(responseTimeMs, number);
-    console.log('badResultsRemoved>>>', badResultsRemoved)
-
-    this.getMedian(badResultsRemoved);
+    const responseTimeMs = [9000, 1200, 40000, 30000, 1000, 2000, 2000, 2000];
+    const number = 500000;
+    this.number = [];
+    this.pushValue(responseTimeMs, number);
+    this.getMedian();
   }
   pushValue(responseTimeMs, number) {
     let cleanTimesArray = [];
     let result = [];
-    (responseTimeMs).map((singleTime) => {
-      if (singleTime < 19000) {
-        cleanTimesArray.push(singleTime)
+    (responseTimeMs).map((singleTimeMs) => {
+      if (singleTimeMs < 19000) {
+        cleanTimesArray.push(singleTimeMs)
       }
       else {
         console.log('Response time out');
       }
     })
-    return new Promise((resolve, reject) => {
-      result.push({ [number]: cleanTimesArray })
-      resolve(result);
-    })
+    result.push(number, cleanTimesArray)
+    this.number = result;
   }
 
-
-
-  getMedian(number) {
-    console.log('number>>>', number)
+  getMedian() {
+    if (Object.keys(this.number).length > 0) {
+      const testingValues = (this.number).map((items) => {
+        if (typeof items === 'object') {
+           items.sort((a, b) => {
+            return a - b;
+          });
+          let half = Math.floor(Object.keys(items).length / 2);
+          if (Object.keys(items).length % 2) {
+            return items[half]
+          };
+          let result = (items[half - 1] + items[half]) / 2.0;
+          console.log('result only happens with multiple reappearing>>>', result)
+          return result;
+        }
+        else {
+          console.log('items in else >>', typeof items)
+        }
+      })
+      console.log('testingValues>>>', testingValues)
+    }
+    else {
+      return []; //TODO
+    }
   }
 
 }
