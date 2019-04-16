@@ -1,4 +1,5 @@
 
+
 'use strict';
 
 class StatsCollector {
@@ -8,6 +9,8 @@ class StatsCollector {
     this.number = [];
     this.pushValue(responseTimeMs, number);
     this.getMedian();
+    this.getAverage();
+    this.result = []; // could just make this to give the result
   }
   pushValue(responseTimeMs, number) {
     let cleanTimesArray = [];
@@ -18,6 +21,7 @@ class StatsCollector {
       }
       else {
         console.log('Response time out');
+        return [];
       }
     })
     result.push(number, cleanTimesArray)
@@ -26,9 +30,9 @@ class StatsCollector {
 
   getMedian() {
     if (Object.keys(this.number).length > 0) {
-      const testingValues = (this.number).map((items) => {
+      return (this.number).map((items) => {
         if (typeof items === 'object') {
-           items.sort((a, b) => {
+          items.sort((a, b) => {
             return a - b;
           });
           let half = Math.floor(Object.keys(items).length / 2);
@@ -36,19 +40,32 @@ class StatsCollector {
             return items[half]
           };
           let result = (items[half - 1] + items[half]) / 2.0;
-          console.log('result only happens with multiple reappearing>>>', result)
           return result;
         }
         else {
-          console.log('items in else >>', typeof items)
+          console.log('items in else >>', items)
         }
       })
-      console.log('testingValues>>>', testingValues)
     }
     else {
-      return []; //TODO
+      return ['ERROR ELSE'];//TODO
     }
   }
 
+  getAverage() {
+    return (this.number).map((items) => {
+      if (typeof items === 'object') {
+        let sum = (items).reduce((a, b) => {
+          return a + b;
+        });
+        let avg = sum / items.length;
+        this.result = (avg);
+        return avg; //TODO: DO I NEED TO ROUND UP
+      }
+      else {
+        return ['ERROR ELSE']; //TODO
+      }
+    })
+  }
 }
 module.exports = new StatsCollector();
