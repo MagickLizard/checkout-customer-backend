@@ -20,7 +20,7 @@ module.exports = (app) => {
 	app.post('/user', (req, res) => {
 console.log('POST>>>')
 
-    // zipcode = req.body.zipcode;
+    // const zipcode = req.body.zipcode;
     res.send({ req, zipcode });
 		// if(!zipcode || zipcode.length < 5 || zipcode.length > 5) {
 		// 	res.redirect('/error');
@@ -28,7 +28,7 @@ console.log('POST>>>')
 		// 	res.redirect('/user');
 		// }
   }),
-  app.post('/api/customer', (req, res) => { 
+  app.post('/', (req, res) => { 
   req.get('Referrer')
   console.log('req.body>>>', req.body)
   

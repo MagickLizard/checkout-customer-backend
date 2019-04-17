@@ -14,7 +14,7 @@ app.get('', (req, res) => {
   res.send('PORT 8080');
 });
 
-app.post('', (req, res) => {
+app.post('/gg', (req, res) => {
   
   res.send('PORT 8080');
 });
