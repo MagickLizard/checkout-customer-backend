@@ -1,36 +1,35 @@
 const request = require('request');
+const url = require('url');
 
+const API_BASE_URL = 'http://api.instagram.com';
 
 
 async function getRecentConversationSummaries() {
-  let path = '/v1/tags/search/q:cat';
-  const options = {
-    method: 'GET',
-    url: 'http://api.instagram.com' + path,
-    headers: {
-      "Cache-Control": "no-cache"
-    }
-  };
-  let promiseResult = new Promise((resolve, reject) => {
-    let output = {
-      success: null,
-      statusCode: null,
-      siebelMessage: null
+  const paths = ['/v1/tags/search/q:cat', '/v1/tags/search/q:lizard', '/v1/tags/search/q:dog'];
+  for (let path of paths) {
+    const options = {
+      method: 'GET',
+      url: API_BASE_URL + path
     };
-    request(options, (err, response, body) => {
-      if (err) {
-        console.log('errr>>>', err)
-        reject(err);
-      }
-      else {
-        console.log('body>>>', body)
-        resolve(body);
-        
-      }
-  })
-  });
-  console.log('promiseResult>>>', promiseResult)
-  return await promiseResult;
+    let promiseResult = new Promise((resolve, reject) => {
+      request(options, (err, response, body) => {
+        if (err) {
+          console.log('errr>>>', err)
+          reject(err);
+        }
+        else {
+          resolve(body);
+        }
+      })
+    });
+    await promiseResult
+      .then(data => {
+        return (data);
+      })
+      .catch(err => {
+        console.error('Make email response Error *****', err);;
+      });
+  }
 }
 getRecentConversationSummaries();
 
