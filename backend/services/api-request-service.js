@@ -1,32 +1,32 @@
 const request = require('request');
+var http = require('http');
+const url = require('url');
 
-const API_BASE_URL = 'https://api.instagram.com/v1/tags/search/q:cat';
 
-async function getRecentSearchSummaries () {
+
+async function getRecentConversationSummaries() {
   let promiseResult = new Promise((resolve, reject) => {
+    const request = http.get({
+      host: 'api.instagram.com',
+      path: '/v1/tags/search/q:cat'
+    }, (response) => (response, resolve, reject) => {
+      const hasResponseFailed = response.status >= 400;
+      var responseBody = '';
 
-    let oauthOptions = new request(API_BASE_URL, {
-      method: 'GET',
-      json:true
+      if (hasResponseFailed) {
+        reject(`Request to ${response.url} failed with HTTP ${response.status}`);
+      }
+
+      response.on('data', chunk => responseBody += chunk);
+      response.on('end', () => resolve(JSON.parse(responseBody)));
     });
-
-  // const getConversationsAll = API_BASE_URL + '/conversations';
-  console.log('oauthOptions>>>', oauthOptions.body);
-  oauthOptions
-  .then((err, httpResponse, body) => {
-    if (err) {
-      console.log('err here')
-      return reject('ERROR : ' + err);
-    }
-    return resolve(body);
-  })
-  .catch((e) => {
-    console.log('err here')
-    reject('getAccessToken ERROR : ' + e);
+          
+    request.end();
+    resolve(request);
   });
-});
- return promiseResult;
+  console.log('promiseResult>>>', promiseResult)
+  return promiseResult;
 }
-getRecentSearchSummaries();
+getRecentConversationSummaries();
 
-module.exports = getRecentSearchSummaries;
+module.exports = getRecentConversationSummaries;
