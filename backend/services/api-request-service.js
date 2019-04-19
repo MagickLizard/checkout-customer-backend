@@ -4,7 +4,7 @@ const url = require('url');
 const moment = require('moment');
 
 const API_BASE_URL = 'http://api.instagram.com';
-async function getRecentsearchummaries() {
+async function getRecentConversationSummaries() {
   let makeRequest = async (path) => {
     const options = {
       method: 'GET',
@@ -22,20 +22,19 @@ async function getRecentsearchummaries() {
       })
     });
   };
-  const requestWrapper = async (setMessagesPath, requestType) => {
+  const conversationRequestWrapper = async (setMessagesPath) => {
     let path = API_BASE_URL;
-    if (requestType === undefined) {
-      path += '/api/search';
-      const conversationResult = await makeRequest(path);
-      return conversationResult;
-    };
+    path += '/api/conversations';
+    return (makeRequest(path)
+    )};
+  const requestWrapper = async (setMessagesPath, requestType) => {
     let promiseArray = [];
     for (let i = 0; i < conversationArray.length; i++) {
       promiseArray.push(new Promise((resolve, reject) => {
-        if (requestType === 'messageRequest') {
-          path = API_BASE_URL + '/api/search/' + conversationArray[i].id + '/messages';
+        if (requestType === 1) {
+          path = API_BASE_URL + '/api/conversations/' + conversationArray[i].id + '/messages';
         }
-        else if (requestType === 'userRequest') {
+        else if (requestType === 2) {
           path = API_BASE_URL + '/api/users/' + conversationArray[i].with_user_id;
         }
         makeRequest(path)
@@ -57,14 +56,19 @@ async function getRecentsearchummaries() {
         return (err);
       });
   };
-  const conversationArray = JSON.parse(await requestWrapper());
-  const setMessageId = await requestWrapper(conversationArray, 'messageRequest');
-  const userResult = await requestWrapper(conversationArray, 'userRequest');
+  const conversationArray = JSON.parse(await conversationRequestWrapper());
+  const setMessageId = await requestWrapper(conversationArray, 1);
+  const userResult = await requestWrapper(conversationArray, 2);
+  console.log('conversationArray>>>', conversationArray);
+  console.log('setMessageId>>>', setMessageId);
+  console.log('userResult>>>', userResult);
+  
 
   let messageResult = (setMessageId).map((k) => {
     for (let items of k) {
       return items;
-    }});
+    }
+  });
   const organiseData = (conversationArray).reduce((previous, current) => {
     let conversationBody = [];
     for (let message of messageResult) {
@@ -90,5 +94,5 @@ async function getRecentsearchummaries() {
   return organiseData;
   //TODO :sort by timestamp
 }
-getRecentsearchummaries();
-module.exports = getRecentsearchummaries;
+getRecentConversationSummaries();
+module.exports = getRecentConversationSummaries;
