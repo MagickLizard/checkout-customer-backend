@@ -6,13 +6,12 @@ class CheckoutService {
   constructor() {
   }
   wrapper(requestBody) {
-    let asyncRes = (async () => {
-      let res = await apiRequestConversations.getRecentSearchSummaries();
+    // console.log('StatsCollector>>>', StatsCollector); //part one
+        let asyncRes = (async () => { // part two
+      let res = await apiRequestConversations.getRecentConversationSummaries();
       console.log('res>', res);
   })();
-    console.log('asyncres>>>', asyncRes)
     return asyncRes;
-    console.log('StatsCollector>>>', StatsCollector)
     
     return IterateRequestHelper.wrapper(requestBody)
   }
