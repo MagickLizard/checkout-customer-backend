@@ -1,7 +1,7 @@
 
 const request = require('request');
 const url = require('url');
-const moment = require('moment');
+
 
 const API_BASE_URL = 'http://api.instagram.com';
 async function getRecentConversationSummaries() {
@@ -26,7 +26,8 @@ async function getRecentConversationSummaries() {
     let path = API_BASE_URL;
     path += '/api/conversations';
     return (makeRequest(path)
-    )};
+    )
+  };
   const requestWrapper = async (setMessagesPath, requestType) => {
     let promiseArray = [];
     for (let i = 0; i < conversationArray.length; i++) {
@@ -35,7 +36,7 @@ async function getRecentConversationSummaries() {
           path = API_BASE_URL + '/api/conversations/' + conversationArray[i].id + '/messages';
         }
         else if (requestType === 2) {
-          path = API_BASE_URL + '/api/users/' + conversationArray[i].with_user_id;
+          path = API_BASE_URL + '/api/users/' + conversationArray[1].with_user_id;
         }
         makeRequest(path)
           .then(data => {
@@ -49,6 +50,7 @@ async function getRecentConversationSummaries() {
     }
     return Promise.all(promiseArray)
       .then(promise => {
+        console.log('promise>>>', promise)
         return (promise);
       })
       .catch(err => {
@@ -59,29 +61,32 @@ async function getRecentConversationSummaries() {
   const conversationArray = JSON.parse(await conversationRequestWrapper());
   const setMessageId = await requestWrapper(conversationArray, 1);
   const userResult = await requestWrapper(conversationArray, 2);
-  console.log('conversationArray>>>', conversationArray);
+  // console.log('conversationArray>>>', conversationArray);
   console.log('setMessageId>>>', setMessageId);
-  console.log('userResult>>>', userResult);
-  
+  // console.log('userResult>>>', userResult);
+
 
   let messageResult = (setMessageId).map((k) => {
     for (let items of k) {
       return items;
     }
   });
+  
+  let messageArraySorted = (messageResult).sort((previous, current) => current.created_at - previous.created_at);
+  let conversationBody = [];
   const organiseData = (conversationArray).reduce((previous, current) => {
-    let conversationBody = [];
-    for (let message of messageResult) {
+    for (let message of messageArraySorted) {
       for (let user of userResult) {
-        if (user.id === current.id) {
+        if (current.id === message.id) {
+        // if (current.id === message.conversation_id && current.with_user_id === user.id) {
           conversationBody.push({
-            id: current.id,
+            id: message.conversation_id,
             latest_message: {
               id: message.conversation_id,
               body: message.body
             },
             from_user: {
-              id: user.id,
+              id: message.from_user_id,
               avatar_url: user.avatar_url
             },
             created_at: message.created_at //TODO: sort by time use moment atm its done automatically which will fail in tests
@@ -89,10 +94,12 @@ async function getRecentConversationSummaries() {
         }
       }
     }
+
     return conversationBody;
   }, []);
+  // console.log('organiseData>>>', organiseData);
   return organiseData;
   //TODO :sort by timestamp
 }
-getRecentConversationSummaries();
+// getRecentConversationSummaries();
 module.exports = getRecentConversationSummaries;

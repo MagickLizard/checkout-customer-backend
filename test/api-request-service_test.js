@@ -5,19 +5,22 @@ const getRecentConversationSummaries = require('../backend/services/api-request-
 const fixture = require('./fixtures/fixtures.js');
 const fs = require('fs');
 const assert = require('assert');
-const expect = require('chai').expect;
 const mocha = require('mocha');
+const should = require('chai').should;
 // Configure Mocha, telling both it and chai to use BDD-style tests.
 
 // mocha.setup("bdd");
 // chai.should();
 
 describe('getRecentConversationSummaries()', () => {
+
   it('should return the current user\'s latest conversations sorted by latest message\'s timestamp', async () => {
-    const result = await getRecentConversationSummaries();//CHANGE BEFORE COMMIT
-    console.log('result>>>', result)
-    
-    result.should.deep.equal([
+    const result = await getRecentConversationSummaries()//CHANGE BEFORE COMMIT
+
+    console.log('result>>>', result);
+
+
+    should.result.deep.equal([
       {
         id: "1",
         latest_message: {
@@ -79,8 +82,7 @@ describe('getRecentConversationSummaries()', () => {
         },
       },
     ]);
-    done();
-  });
+  }).timeout(10000);;
   // TODO: Add more tests
 });
 
