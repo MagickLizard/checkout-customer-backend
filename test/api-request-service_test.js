@@ -20,7 +20,7 @@ describe('getRecentConversationSummaries()', () => {
     console.log('result>>>', result);
 
 
-    should.result.deep.equal([
+    result.should.deep.equal([
       {
         id: "1",
         latest_message: {
@@ -82,7 +82,7 @@ describe('getRecentConversationSummaries()', () => {
         },
       },
     ]);
-  }).timeout(10000);;
+  }).timeout(10000);
   // TODO: Add more tests
 });
 
