@@ -6,12 +6,8 @@ class StatsCollector {
     const responseTimeMs = [9000, 1200, 40000, 30000, 1000, 2000, 2000, 2000];
     this.requests = [];
     this.result = [];
-    this.pushValue(responseTimeMs);
     this.getMedian();
     this.getAverage();
-
-    console.log('getMedian>>>', this.getMedian());
-    console.log('getAverage>>>', this.getAverage());
   }
   pushValue(responseTimeMs) {
     if (Array.isArray(responseTimeMs)) {

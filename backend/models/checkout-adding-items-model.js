@@ -1,26 +1,23 @@
-const CheckoutService = require('../services/checkout-service.js');
+const CheckoutService = require("../services/checkout-service.js");
 
 class CheckoutAddingItemsModel {
   constructor() {
     this.checkoutService = CheckoutService;
-
   }
 
   add(req) {
     if (req.body) {
-      
-   //TODO: create a safety layer in lib instead of calling this from model
-   return this.checkoutService.wrapper(req.body)
+      const res = this.checkoutService.wrapper(req.body);
+      console.log("in add>", res);
+      return res;
+    } else {
+      console.log("ERROR in Model >>>");
+      return {error: Error};
     }
-    else {
-      console.log('ERROR in Model >>>')
-      //not handling yet
-    }
- 
-  }  
+  }
 
   total(allData) {
-    return allData
+    return allData;
   }
 }
 module.exports = CheckoutAddingItemsModel;

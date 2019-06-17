@@ -1,45 +1,43 @@
 
-const request = require('request');
-const url = require('url');
 
-const API_BASE_URL = 'http://api.instagram.com';
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+const API_BASE_URL = 'http://ui-developer-backend.herokuapp.com';
 async function getRecentConversationSummaries() {
-  let makeRequest = async (path) => {
-    const options = {
-      method: 'GET',
-      url: path
-    };
-    return new Promise((resolve, reject) => {
-      request(options, (err, response, body) => {
-        if (err) {
-          console.error(' Error 1*****', err);
-          reject(err);
-        }
-        else {
-          resolve(JSON.parse(body));
-        }
-      })
-    })
+  let makeRequest = async (path, response) => {
+     return new Promise((resolve) => {
+        let xhr = new XMLHttpRequest();
+   
+          xhr.onreadystatechange = async function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            resolve(await JSON.parse(xhr.responseText));
+          }
+        };
+        xhr.open('GET', path, true);
+        xhr.send();
+        return xhr;
+    });
   };
-  const setConversationsPath = async () => {
+
+  const setConversationsPath = () => {
     let path = API_BASE_URL;
     path += '/api/conversations';
     return makeRequest(path)
   };
-  const setMessagePath = async (setMessagesPath) => {
-   let path = API_BASE_URL + '/api/conversations/' + setMessagesPath + '/messages';
+  const setMessagePath = (setMessagesPath) => {
+    let path = API_BASE_URL + '/api/conversations/' + setMessagesPath + '/messages';
     return makeRequest(path)
   };
-  const setUsersPath = async (setMessagesPath) => {
+  const setUsersPath = (setMessagesPath) => {
     let path = API_BASE_URL;
     path += '/api/users/' + setMessagesPath;
     return makeRequest(path)
   };
   const conversationArray = await setConversationsPath();
-  const conversationMessages = await Promise.all(conversationArray.map(
+  const messagesArray = await Promise.all(conversationArray.map(
     (conversation) => (setMessagePath(conversation.id))
   ));
-  let messageResult = (conversationMessages).map((k) => {
+  let messageResult = (messagesArray).map((k) => {
     for (let items of k) { return items; }
   });
   let messagesSorted = (messageResult).sort((previous, current) => current.created_at - previous.created_at);
@@ -48,22 +46,21 @@ async function getRecentConversationSummaries() {
   ));
   let conversationBody = [];
   const organiseData = (messagesSorted).reduce((previous, current, index) => {
-          conversationBody.push({
-            id: current.conversation_id,
-            latest_message: {
-              id: current.conversation_id,
-              body: current.body
-            },
-            from_user: {
-              id: current.from_user_id,
-              avatar_url: userResult[index].avatar_url
-            },
-            created_at: current.created_at
-          });
+    conversationBody.push({
+      id: current.conversation_id,
+      latest_message: {
+        id: current.conversation_id,
+        body: current.body
+      },
+      from_user: {
+        id: current.from_user_id,
+        avatar_url: userResult[index].avatar_url
+      },
+      created_at: current.created_at
+    });
     return conversationBody;
   }, []);
-console.log('organiseData>>>', JSON.stringify(organiseData))
-  return organiseData; //FORMAT DATA TO RESPONSE
+  return conversationBody;
 }
 // getRecentConversationSummaries();
 module.exports = getRecentConversationSummaries;
